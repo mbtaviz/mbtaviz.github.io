@@ -1,0 +1,52 @@
+{
+  "author": "Paul Miller (http://paulmillr.com)",
+  "name": "es6-shim",
+  "version": "0.10.1",
+  "description": "ECMAScript 6 (Harmony) compatibility shims for legacy JavaScript engines",
+  "keywords": [
+    "ecmascript",
+    "harmony",
+    "es6",
+    "shim",
+    "promise",
+    "promises",
+    "setPrototypeOf",
+    "map",
+    "set",
+    "__proto__"
+  ],
+  "homepage": "https://github.com/paulmillr/es6-shim/",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/paulmillr/es6-shim.git"
+  },
+  "main": "es6-shim",
+  "scripts": {
+    "test": "jshint es6-shim.js && mocha test/*.js test/*/*.js"
+  },
+  "testling": {
+    "html": "testling.html",
+    "browsers": [
+      "iexplore/9.0..latest",
+      "firefox/10.0",
+      "firefox/17.0",
+      "firefox/22.0..latest",
+      "firefox/nightly",
+      "chrome/25.0..latest",
+      "chrome/canary",
+      "safari/5.0.5..latest",
+      "ipad/6.0..latest",
+      "iphone/6.0..latest",
+      "opera/12.0..latest",
+      "android-browser/4.2..latest"
+    ]
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "mocha": "~1.17.1",
+    "chai": "~1.9.0",
+    "es5-shim": "~2.3.0",
+    "jshint": "~2.4.3",
+    "promises-aplus-tests": "~2.0.3"
+  }
+}

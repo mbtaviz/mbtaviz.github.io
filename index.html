@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <meta name="viewport" content="width=768">
+  <title>Visualizing MBTA Data</title>
+  <meta name="description" content="An interactive exploration of ridership, congestion, and delay on Boston's subway system.">
+  <link rel="canonical" href="http://mbtaviz.github.io/" />
+
+  <!-- Open-graph metadata -->
+  <meta property="og:title" content="Visualizing MBTA Data"/>
+  <meta property="og:description" content="An interactive exploration of ridership, congestion, and delay on Boston's subway system.">
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="http://mbtaviz.github.io/"/>
+  <meta property="og:image" content="http://mbtaviz.github.io/preview.png"/>
+  <meta property="fb:admins" content="9318920"/>
+
+  <!-- Twitter card metadata -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@msb5014">
+  <meta name="twitter:title" content="Visualizing MBTA Data">
+  <meta name="twitter:description" content="An interactive exploration of ridership, congestion, and delay on Boston's subway system.">
+  <meta name="twitter:creator" content="@msb5014">
+  <meta name="twitter:image:src" content="http://mbtaviz.github.io/wide-preview.png">
+
+  <!-- Sweeeet dev console branding -->
+  <meta name="signet:authors" content="Michael Barry, Brian Card">
+  <meta name="signet:links" content="http://github.com/mbtaviz, http://github.com/msbarry, http://github.com/bcard, http://twitter.com/msb5014">
+
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-50914509-1', 'mbtaviz.github.io');
+    ga('send', 'pageview');
+  </script>
+
+
+  <link href='styles/main.b37ad3a6.css' rel='stylesheet' type='text/css'>
+</head>
+<body>
+<!--[if lt IE 9]>
+  <div class="container">
+    <p>
+      You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to view this visualization the way it was intended.  A picture of this visualization rendered in a modern browser is shown below.
+    </p>
+  </div>
+  <div class="text-center">
+    <img src="ie.png">
+  </div>
+<![endif]-->
+<!--[if gte IE 9]><!-->
+
+  <!-- Header -->
+  <div class="full-width header">
+    <div class="full-width header-inner">
+      <div class="container">
+        <div class="title col-sm-8">
+          <h1>Visualizing MBTA Data</h1>
+          <h2>An interactive exploration of Boston's subway system</h2>
+          <p class="authors">
+            Mike Barry and Brian Card - June 10, 2014
+          </p>
+        </div>
+        <div class="graphic col-sm-4 pull-right">
+        </div>
+      </div>
+    </div>
+
+    <!-- AddThis Button BEGIN -->
+    <div class="container section-share">
+      <div class="addthis_toolbox addthis_default_style ">
+      <a class="addthis_button_facebook_share" fb:share:layout="button_count"></a>
+      <a class="addthis_button_tweet"></a>
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+      <a class="addthis_counter addthis_pill_style"></a>
+      </div>
+      <script type="text/javascript">
+      var addthis_config = {"data_track_addressbar":false,"data_track_clickback":false};
+      var addthis_share = {"url":"http://mbtaviz.github.io/","title":"Visualizing MBTA Data","description":"An interactive exploration of Boston's subway system"};
+      </script>
+      <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5253f5637952ccec"></script>
+    </div>
+    <!-- AddThis Button END -->
+  </div>
+
+  <!-- Intro -->
+  <div class="full-width section-intro">
+    <div class="container">
+      <p>Boston’s Massachusetts Bay Transit Authority (MBTA) operates the 4th busiest subway system in the U.S. after New York, Washington, and Chicago.  If you live in or around the city you have probably ridden on it.  The MBTA recently began publishing substantial amount of subway data through its public APIs.  They provide the full schedule in General Transit Feed Specification (GTFS) format which powers Google’s transit directions.  They also publish realtime train locations for the Red, Orange, and Blue lines (but not Green or Silver lines).  The following visualizations use data captured from these feeds for the entire month of February, 2014.  Also, working with the MBTA, we were able to acquire per-minute entry and exit counts at each station measured at the turnstiles used for payment.</p>
+      <p>We attempt to present this information to help people in Boston better understand the trains, how people use the trains, and how the people and trains interact with each other.</p>
+    </div>
+  </div>
+
+  <!-- The Trains -->
+  <div class="full-width section-trains">
+    <div class="container">
+      <h3>
+        <a href="#trains" class="anchor">
+          <span class="glyphicon glyphicon-link"></span>
+        </a>
+        The Trains
+      </h3>
+
+      <div class="row">
+        <div class="col-sm-7 col-lg-8">
+          <p>In a typical weekday, trains make approximately 1150 trips on the red, orange, and blue lines starting at 5AM and continuing through 1AM the next morning.  On Saturdays trains make 870 trips and on Sundays they make 760.</p>
+
+          <p>To better understand how the trains operate on a typical day, below are all trips that trains took on the red, orange, and blue lines on Monday February 3 2014.  Each vertical line represents a station, and time extends from top to bottom.  Steeper lines indicate slower trains.  This visualization was first used by Étienne-Jules Marey to visualize train schedules and is typically called a “Marey Diagram.”</p>
+        </div>
+
+        <div class="table-inset col-sm-5 col-lg-4">
+          <div class="table-caption">Average Number of Trips per Day</div>
+          <table class="table table-condensed table-hover">
+            <thead>
+              <tr><th></th><th class="bottom-border">Weekdays</th><th class="bottom-border">Saturdays</th><th class="bottom-border">Sundays</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Red</td><td>450</td><td>350</td><td>300</td></tr>
+              <tr><td>Orange</td><td>320</td><td>260</td><td>220</td></tr>
+              <tr class="bottom-border"><td>Blue</td><td>380</td><td>260</td><td>240</td></tr>
+            </tbody>
+            <tfoot>
+              <tr><td>Total</td><td><strong>1150</strong></td><td><strong>870</strong></td><td><strong>760</strong></td></tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Marey -->
+    <div class="full-width marey-container loading">
+      <div class="container text-center">
+        <h4>Subway Trips on Monday February 3, 2014</h4>
+      </div>
+      <!-- The map and description on the left side -->
+      <div class="fixed-container">
+        <div class="fixed-left" data-top="100">
+          <div class="side-map">
+          </div>
+          <div class="side-caption">
+            <p>Locations of each train on the <a href="#" data-line="red" class="hover-link highlight">red</a>, <a href="#" data-line="blue" class="hover-link highlight">blue</a>, and <a href="#" data-line="orange" class="hover-link highlight">orange</a> lines at <span class="marey-time"></span>.  Hover over the diagram to the right to display trains at a different time.</p>
+            <p>Trains are on the right side of the track relative to the direction they are moving.</p>
+            <p>
+              See the
+              <a href="#" data-dest="marey-morning-rush" class="click-link scrollto">morning rush-hour</a>, 
+              <a href="#" data-dest="marey-midday-lull" class="click-link scrollto">midday lull</a>, 
+              <a href="#" data-dest="marey-evening-rush" class="click-link scrollto">afternoon rush-hour</a>, and the
+              <a href="#" data-dest="marey-evening-lull" class="click-link scrollto">evening lull</a>.
+            </p>
+          </div>
+        </div>
+        <!-- The multi-page Marey diagram -->
+        <div class="fixed-right">
+          <div class="inner">
+            <div class="marey"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lined-up Marey diagram -->
+    <div class="full-width lined-up-marey-container">
+      <div class="container">
+        <p>
+          To better compare the individual trips on this day, the visualization below shows all of the trips from the above diagram juxtaposed with the the starting points lined up so you can see the range of fastest to slowest trips, as well as variation in trip times based on the time of day.
+          The trains slow down a little bit during the
+          <a href="#" data-lo="7" data-hi="10" class="hover-link lined-up-highlight">morning rush-hour</a>,
+          primarily on the outbound blue line.  The
+          <a href="#" data-lo="16" data-hi="19" class="hover-link lined-up-highlight">afternoon rush-hour</a>
+          is by-far the worst time of day for the red line.  The
+          <a href="#" data-lo="10" data-hi="16" class="hover-link lined-up-highlight">midday lull</a>
+          and
+          <a href="#" data-lo="19" data-hi="24" class="hover-link lined-up-highlight">evening lull</a>
+          are both fairly consistent.  Hover over the time scale on the left to highlight trips during different parts of the day.  Click on a line to see all at what time the train was at each stop.
+        </p>
+
+        <!-- Lined-up Marey -->
+        <div class="lined-up-marey"></div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- The People -->
+  <div class="full-width section-people loading">
+    <div class="container">
+      <h3>
+        <a href="#people" class="anchor">
+          <span class="glyphicon glyphicon-link"></span>
+        </a>
+        The People
+      </h3>
+      <p>In a typical weekday, 425,000 people enter a station along the red, orange, or blue lines.  On weekends and holidays, that number drops to 200,000.  The busiest day was Friday February 7 when 470,187 people entered the system.</p>
+      <p>
+        This heatmap shows the average number of people that
+        <a href="#" class="hover-link dim" data-dim="exits">enter</a>
+        and
+        <a href="#" class="hover-link dim" data-dim="entrances">exit</a>
+        stations along the red, orange, and blue line for every hour over the entire month based on records from turnstiles at each station.  Each row represents one week. You can see weekends and weekdays with daily peaks at rush hour, as well as
+        <a href="#" class="hover-link highlight-total" data-highlight="holidays">a holiday</a>,
+        and
+        <a href="#" class="hover-link highlight-total" data-highlight="snow">two snow storms</a>.
+        Our exit data is less reliable since not all stations measure require that people exit through a turnstile.
+      </p>
+
+      <!-- Turnstile heatmap over the all stations -->
+      <div class="spacing">
+        <h4 class="text-center">Entrances and Exits from All Stations during February 2014</h4>
+        <div class="turnstile-total"></div>
+        <div class="turnstile key text-center"></div>
+      </div>
+      
+      <p>
+        The table and map below breaks down February's turnstile entries and exits by station.
+        Hover over a row in the table to highlight the corresponding circle on the map, or vice-versa.
+        Click on a row in the table to show a detailed heatmap for the entrances to and exits from that station over the month.
+        Click and drag on several table rows to highlight a range of stations.
+      </p>
+      <p>
+        You can see the busiest stations are all along the Red Line.
+        <a href="#" class="click-link highlight-stops" data-stops="Harvard">Harvard</a>
+        topped the list, followed close by
+        <a href="#" class="click-link highlight-stops" data-stops="South Station">South Station</a>
+        , and then
+        <a href="#" class="click-link highlight-stops" data-stops="Downtown Crossing">Downtown Crossing</a>
+        .  Next to each station are heatmaps showing
+        <a href="#" class="hover-link highlight" data-highlight="entrances">entrances</a>
+        and
+        <a href="#" class="hover-link highlight" data-highlight="exits">exits</a>
+        to each station per-hour for
+        <a href="#" class="hover-link highlight" data-highlight="weekday">weekdays</a>
+        and
+        <a href="#" class="hover-link highlight" data-highlight="offpeak">weekends/holidays</a>.
+        You can see that some stations are
+        <a href="#" class="click-link highlight-stops" data-stops="South Station,Downtown Crossing,Park Street,Back Bay,Kendall Square,State Street,Charles MGH,Ruggles,JFK/U Mass">work stations</a>
+        since their exits peak in the morning and entrances peak in the afternoon and that some stations are
+        <a href="#" class="click-link highlight-stops" data-stops="Forest Hills,Davis Square,Malden Center,Maverick,Sullivan Square,Alewife,Porter Square,Quincy Center,Wellington,North Quincy,Oak Grove">home stations</a>
+        since their entrances peak in the morning and exits peak in the afternoon.  Some stations are just
+        <a href="#" class="click-link highlight-stops" data-stops="Harvard,North Station,Central Square">busy all the time</a>.
+      </p>
+    </div>
+
+    <!-- Turnstile summary table - map on the left, table on the right -->
+    <div class="turnstile-viz fixed-container spacing">
+      <h4 class="text-center">Entrances and Exits per Station during February 2014</h4>
+      <div class="fixed-left" data-top="0">
+        <div class="glyph clearfix"></div>
+        <div class="key circles clearfix"></div>
+        <div class="side-caption clearfix">
+          <p>
+            Each circle above and row in the table represent a station, hover over one to highlight the other.
+            Next to each station are heatmaps showing
+            <a href="#" class="hover-link highlight" data-highlight="entrances">entrances</a>
+            and
+            <a href="#" class="hover-link highlight" data-highlight="exits">exits</a>
+            to each station per-hour for
+            <a href="#" class="hover-link highlight" data-highlight="weekday">weekdays</a>
+            and
+            <a href="#" class="hover-link highlight" data-highlight="offpeak">weekends/holidays</a>.
+          </p>
+          <p>
+            Notice
+            <a href="#" class="click-link highlight-stops" data-stops="South Station,Downtown Crossing,Park Street,Back Bay,Kendall Square,State Street,Charles MGH,Ruggles,JFK/U Mass">work stations</a>
+            with exit peaks in the morning and entrances peak in the afternoon,
+            <a href="#" class="click-link highlight-stops" data-stops="Forest Hills,Davis Square,Malden Center,Maverick,Sullivan Square,Alewife,Porter Square,Quincy Center,Wellington,North Quincy,Oak Grove">home stations</a>
+            with entrance peaks in the morning and exit peaks in the afternoon, and the stations that are just
+            <a href="#" class="click-link highlight-stops" data-stops="Harvard,North Station,Central Square">busy all the time</a>.
+          </p>
+        </div>
+      </div>
+      <div class="fixed-right">
+        <div class="inner">
+          <div class="turnstile-table"></div>
+          <div class="turnstile-all-key key"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Congestions and delay -->
+  <div class="full-width section-people-trains">
+    <div class="container">
+      <h3>
+        <a href="#interaction" class="anchor">
+          <span class="glyphicon glyphicon-link"></span>
+        </a>
+        How People and Trains Affect Each Other
+      </h3>
+      <p>When you look back at the Marey diagram, the slope of each line tells you how fast a train is going and the time it takes to get between stations.  When all of the start and stop times are lined up you can see a drastic variation in the time it takes to get between stops throughout the day.  If you have ever ridden the subway during rush hour then you have experienced what the steep lines in the Marey diagram feel like first-hand.</p>
+      <p>What causes these delays?  It’s hard to know for sure, but it appears that number of people riding the subway is a factor.</p>
+    </div>
+    
+    <div class="interaction-all">
+      
+      <div class="container text-center">
+        <h4>One Week of Congestion and Delay</h4>
+      </div>
+      <div class="loading"></div>
+
+      <!-- The congestion and delay visualization - glyph on the left, horizon/color bands on the right -->
+      <div class="viz clearfix">
+        <div class="left clearfix">
+          <div class="glyph clearfix"></div>
+          <div class="key clearfix"></div>
+        </div>
+        <div class="right clearfix">
+        </div>
+      </div>
+      
+      <div class="container">
+        <p>
+          This visualization shows congestion and delay on the red, blue, and orange lines for the first full week in February. The <a href="#" class="hover-link highlight" data-highlight=".horizon">gray bands</a> show the total number of entries into the all stations per minute over time for each day of the week.  The <a href="#" class="hover-link highlight" data-highlight=".delay-rect">colored bands</a> below indicate whether the trains are running <span class="legend-fast">faster</span> or <span class="legend-slow">slower</span> than normal. 
+        </p>
+        <p>
+          The <a href="#" class="hover-link highlight" data-highlight=".breathing-glyph">map</a> shows the congestion and delay across the system at a time when you hover over the chart on the right.  The thickness of each line at a stop indicates number of entries per minute at that stop, and the color on the right-hand side of a track indicates delay in that direction using the same scale as the <a href="#" class="hover-link highlight" data-highlight=".delay-rect">colored bands</a>.
+        </p>
+        <p>
+          You can see basketball games letting out on
+          <a href="#" class="hover-link set-time" data-day="1" data-time="11:16 pm">Monday</a>,
+          <a href="#" class="hover-link set-time" data-day="2" data-time="10:04 pm">Tuesday</a>,
+          <a href="#" class="hover-link set-time" data-day="5" data-time="10:10 pm">Friday</a>, and
+          <a href="#" class="hover-link set-time" data-day="0" data-time="8:34 pm">Sunday</a>.
+          You can also tell that it snowed on
+          <a href="#" class="hover-link highlight" data-highlight=".day-3">Wednesday</a>
+          and people stayed home, especially when you compare how light
+          <a href="#" class="hover-link set-time" data-day="3" data-time="5:24 pm">Wednesday evening's rush hour</a>
+          was compared to 
+          <a href="#" class="hover-link set-time" data-day="4" data-time="5:24 pm">Thursday evening's rush hour</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pick two stops -->
+  <div class="full-width section-pick-two">
+    <div class="container">
+      <h3>
+        <a href="#your-commute" class="anchor">
+          <span class="glyphicon glyphicon-link"></span>
+        </a>
+        Your Commute
+      </h3>
+      <p>
+        How do all of these factors affect your commute? 
+        Click and drag on the
+        <a href="#" data-highlight=".map" class="hover-link pick-two-highlight">map</a>
+        from a starting station to an ending station to see a detailed breakdown of how long that trip takes at different points during a typical workday.
+        The
+        <a href="#" data-highlight=".circle.top" class="hover-link pick-two-highlight">points on top</a>
+        show all of the trip durations for a given starting time from the start to destination and the
+        <a href="#" data-highlight=".circle.bottom" class="hover-link pick-two-highlight">points on bottom</a>
+        show all of the times between when when trains leave the start station going to the destination station.
+        The time between trains is the longest you would possibly need to wait if you arrived just as the previous train was leaving.
+        The 
+        <a href="#" data-highlight=".top.range" class="hover-link pick-two-highlight">blue band</a>
+        excludes the shortest and longest 10% of all transit times, leaving behind the most-likely 80% range and the
+        <a href="#" data-highlight=".bottom.range" class="hover-link pick-two-highlight">orange band</a>
+        does the same for wait times between trains.
+        The 
+        <a href="#" data-highlight=".p50" class="hover-link pick-two-highlight">dark lines</a>
+        show the middle point where 50% of the time wait/transit times are higher and 50% of the time they are lower.
+      </p>
+    </div>
+
+    <div class="viz clearfix">
+      <div class="left picker clearfix">
+        <div class="map dimmable clearfix"></div>
+        <div class="details dimmable clearfix"></div>
+        <div class="loading clearfix"></div>
+        <div class="key dimmable clearfix">
+          <span class="hide-on-ios">Drag from a starting station to an ending station to see how long the trip takes over time in the chart.</span>
+          <span class="only-ios">Click on a starting station then an ending station to see how long the trip takes over time in the chart.</span>
+        </div>
+      </div>
+      <div class="right pick-two clearfix">
+        <div class="inner-viz">
+        </div>
+        <div class="key dimmable clearfix">
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <p>
+        In general, delays go up during rush hour but trains come more frequently, for example if you look at
+        <a href="#" data-start="place-sstat" data-end="place-knncl" class="click-link pick-two-choose">South Station to Kendall/MIT</a>
+        you will notice that the
+        <a href="#" data-highlight=".circle.top, .top.range" class="hover-link pick-two-highlight">transit times</a>
+        go up as the
+        <a href="#" data-highlight=".circle.bottom, .bottom.range" class="hover-link pick-two-highlight">wait times</a>
+        go down.
+        If you drag across the chart, the paragraph below will tell you that these effects roughly balance eachother out and the most-likely trip duration (half the normal time between trains plus total transit time) stays constant around 10-12 minutes.
+        It is also interesting to note that transit times on the blue line, for example
+        <a href="#" data-start="place-state" data-end="place-wondl" class="click-link pick-two-choose">State St. to Wonderland</a>
+        are much less variable than the red line.
+        Orange line trips like
+        <a href="#" data-start="place-dwnxg" data-end="place-forhl" class="click-link pick-two-choose">Downtown Crossing to Forest Hills</a>
+        are less variable in transit time - but trains come much less frequently and reliably.
+      </p>
+    </div>
+  </div>
+
+  <!-- The Conclusion -->
+  <div class="full-width section-conclusion">
+    <div class="container">
+      <h3>
+        <a href="#summary" class="anchor">
+          <span class="glyphicon glyphicon-link"></span>
+        </a>
+        Summary
+      </h3>
+      <p>Through publicly available data, we have the tools to understand the subway system better than we ever have before.  We have seen how the system operates on a daily basis, how people use the system, how that affects the trains and also how this ties back to your daily commute.  To see a real-time version of this data, check out <a href="https://mbta.meteor.com" target="_blank">mbta.meteor.com</a> for up-to-the-minute congestion and delay information.
+    </div>
+  </div>
+
+  <!-- Credits -->
+  <div class="full-width section-credits">
+    <div class="container">
+      <h3>
+        <a href="#credits" class="anchor">
+          <span class="glyphicon glyphicon-link"></span>
+        </a>
+        Credits
+      </h3>
+      <p>
+        This project was created by Michael Barry and Brian Card for a graduate course in Data Visualization at
+        <a href="http://www.wpi.edu/" target="_blank">WPI</a>
+        taught by
+        <a href="http://web.cs.wpi.edu/~matt/" target="_blank">Matthew Ward</a>.
+        Several open-source projects were used under the
+        <a href="http://opensource.org/licenses/MIT" target="_blank">MIT License</a>
+        including
+        <a href="http://d3js.org/" target="_blank">D3</a>,
+        <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>,
+        <a href="http://glyphicons.com/" target="_blank">Glyphicons</a>,
+        <a href="http://underscorejs.org/" target="_blank">Underscore</a>,
+        <a href="http://momentjs.com/" target="_blank">Moment.js</a>,
+        <a href="https://github.com/paulmillr/es6-shim/" target="_blank">es6-shim</a>, and
+        <a href="http://labratrevenge.com/d3-tip/" target="_blank">D3-tip</a>.
+        Data courtesy of the
+        <a href="http://www.mbta.com" target="_blank">MBTA</a>
+        and their
+        <a href="http://www.mbta.com/rider_tools/developers/" target="_blank">Developer Relations Program</a>.
+      </p>
+      <p>
+        Much of the inspiration for this report comes from Brett Victor's 
+        <a href="http://worrydream.com/LadderOfAbstraction/" target="_blank">Ladder of Abstraction</a>
+        and the works of
+        <a href="http://www.edwardtufte.com/tufte/" target="_blank">Edward Tufte</a>
+        and
+        <a href="http://en.wikipedia.org/wiki/%C3%89tienne-Jules_Marey" target="_blank">Étienne-Jules Marey</a>.
+      </p>
+      <p>
+        For any questions on our project, dataset, or source code, please reach out to
+        <a href="https://twitter.com/msb5014" target="_blank">Michael Barry on Twitter</a>.
+      </p>
+    </div>
+  </div>
+
+  <!-- The Code -->
+  <script src="scripts/es6-shim.c2bd72fb.js"></script>
+  <script src="scripts/underscore.32e682c4.js"></script>
+  <script src="bower_components/moment/min/moment.min.cdab859b.js"></script>
+  <script src="bower_components/d3/d3.min.1d7dc488.js"></script>
+  <script src="bower_components/jquery/dist/jquery.min.c0d4098b.js"></script>
+  <script src="scripts/main.f470ea08.js"></script>
+  
+    <script src="//oss.maxcdn.com/signet/0.4.4/signet.min.js"></script>
+  
+<!--<![endif]-->
+</body>
+</html>
