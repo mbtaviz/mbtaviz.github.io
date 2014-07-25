@@ -1,0 +1,78 @@
+/**
+ * header.less
+ *
+ * Copyright 2014 Michael Barry & Brian Card.  MIT open-source lincense.
+ *
+ * Styles for the header section
+ */
+
+.header {
+  .header-inner {
+    padding-top: 10px;
+    padding-bottom: 20px;
+    color: #333;
+    background-color: #fafafa;
+    border-bottom: 1px solid #e5e5e5;
+    margin-bottom: 1em;
+  }
+  .container {
+    position: relative;
+
+    .title {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+
+      h1 {
+        font-size: 32px;
+        margin-bottom: 0.1em;
+        @media (min-width: @screen-md-min) {
+          font-size: 48px;
+        }
+        @media (min-width: @screen-lg-min) {
+          font-size: 55px;
+        }
+      }
+      h2 {
+        margin-top: 0.1em;
+        margin-bottom: 3em;
+        font-size: 14px;
+        font-weight: 200;
+        @media (min-width: @screen-md-min) {
+          font-size: 18px;
+        }
+      }
+      .authors {
+        .sans();
+        color: #999999;
+        font-weight: 200;
+      }
+    }
+
+    .graphic {
+      position: relative;
+      margin: 0 auto;
+      .connect {
+        stroke-width: 0.5;
+        stroke: black;
+      }
+      circle.station.middle {
+        fill: gray;
+        opacity: 0.3;
+      }
+      circle.station.end {
+        opacity: 1;
+      }
+    }
+  }
+  .section-share {
+    min-height: 29px;
+    max-height: 29px;
+  }
+  .addthis_toolbox {
+    .pull-right;
+    .addthis_pill_style {
+      width: 50px !important;
+    }
+  }
+}

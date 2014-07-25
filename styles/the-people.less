@@ -1,0 +1,189 @@
+/**
+ * the-people.less
+ *
+ * Copyright 2014 Michael Barry & Brian Card.  MIT open-source lincense.
+ *
+ * Styles for the turnstile visualization
+ */
+@bar-color: #cecfc6;
+@bar-color-highlight: darken(#cecfc6, 25%);
+
+ .section-people {
+  // heatmaps
+  .graphic {
+    text-align:left;
+    padding-left: 20px;
+  }
+
+  .dayLabel {
+    fill: #999;
+    font-size: 8pt;
+  }
+
+  .groupLabel {
+    fill: #999;
+    color: #999;
+    font-size: 8pt;
+  }
+
+  .light-markup {
+    fill: #999;
+    color: #999;
+  }
+
+  .small {
+    font-size: 7pt;
+  }
+
+  svg {
+    margin: 0;
+    padding: 0;
+  }
+
+  .xAxis .tick {
+      font-family: sans-serif;
+      font-size: 6px;
+      fill: #999;
+  }
+
+  rect {
+    stroke: none;
+    shape-rendering: crispEdges;
+  }
+
+  .station {
+    text-anchor: middle;
+  }
+
+  .station.total {
+    font-size: 12px;
+  }
+
+  .station.header {
+    font-size: 14px;
+    font-weight: bold;
+    shape-rendering: crispEdges;
+  }
+
+  .station.close {
+    fill: @link-color;
+
+    &:hover,
+    &:focus {
+      fill: @link-hover-color;
+      text-decoration: underline;
+    }
+  }
+
+  .xAxis path,
+  .xAxis line {
+      fill: none;
+      stroke: none;
+      shape-rendering: crispEdges;
+  }
+
+  .highlight {
+    fill: none;
+    stroke: steelBlue;
+    stroke-opacity: 1;
+    shape-rendering: crispEdges;
+  }
+
+  line.highlight { stroke-width: 1px; stroke-dasharray: 2,2; }
+  rect.highlight { stroke-width: 2px; }
+
+  .turnstile-total,
+  .turnstile-all,
+  .stop-heatmap,
+  .heatmap {
+    rect:hover,
+    rect.hover {
+      fill: @link-color !important;
+    }
+  }
+
+  .bar {
+    fill: @bar-color;
+    shape-rendering: crispEdges;
+  }
+  .active.row .bar {
+    fill: @bar-color-highlight !important;
+  } 
+  .row {
+    cursor: pointer;
+  }
+
+  // map glyph
+  .connect {
+    stroke-width: 0.5;
+    stroke: #999;
+  }
+  circle.station.middle {
+    fill: @bar-color;
+  }
+  .hover-circle() {
+    stroke-width: 2px;
+  }
+  circle.station {
+    stroke-width: 0.5;
+    stroke: black;
+    opacity: 1;
+    &:hover {
+      .hover-circle();
+    }
+  }
+  .turnstile-viz .fixed-left {
+    text-align: center;
+  }
+
+  // Table of turnstile data summary
+  .bottom-edge {
+    stroke: #ccc;
+    stroke-width: 1px;
+    shape-rendering: crispEdges;
+  }
+  .highlighting.glyph .dimmable {
+    opacity: 0.5 !important;
+  }
+  .highlighting.glyph .dimmable.active {
+    .hover-circle();
+    opacity: 1 !important;
+  }
+  .highlighting.turnstile-table .dimmable {
+    opacity: 0.4;
+  }
+  .bounding-box {
+    stroke: white;
+  }
+  .fixed-right .active {
+    opacity: 1 !important;
+    .bottom-edge {
+      stroke: #333;
+      stroke-width: 1px;
+      shape-rendering: crispEdges;
+    }
+  }
+  .fixed-right .dim {
+    opacity: 0.1;
+  }
+  .details {
+    font-size: 12px;
+    max-width: 600px;
+    margin: 0 auto 1em auto;
+    text-align: center;
+  }
+
+  rect.outline,
+  line.border {
+    fill: none;
+    stroke: @bar-color;
+    stroke-width: 1px;
+    shape-rendering: crispEdges;
+  }
+  .active.row {
+    rect.outline,
+    line.border {
+      stroke: darken(@bar-color, 25%);
+    }
+  }
+}

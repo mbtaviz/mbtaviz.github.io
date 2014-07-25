@@ -1,0 +1,210 @@
+/**
+ * your-commute.less
+ *
+ * Copyright 2014 Michael Barry & Brian Card.  MIT open-source lincense.
+ *
+ * Style for the your commute visualization
+ */
+.section-pick-two .viz {
+  text-align: center;
+  padding: 2em 0;
+  .map {
+    .connect {
+      stroke-width: 0.5px;
+      stroke: #ccc;
+    }
+    .active.connect {
+      stroke-width: 1.5px;
+      stroke: @brand-success;
+    }
+    circle {
+      fill-opacity: 1;
+    }
+    circle.station.middle {
+      fill: #ccc;
+    }
+    circle.station.end {
+      stroke-width: 1.5px;
+    }
+    circle.active {
+      fill: @brand-success !important;
+    }
+
+    .station-wrapper.hover circle {
+      stroke: black !important;
+      stroke-width: 1.5px;
+    }
+    .station-wrapper circle.start,
+    .arrow {
+      fill: darken(@brand-success, 40%) !important;
+      font-weight: bold;
+      font-size: 12px;
+    }
+
+    .voronoi,
+    .voronoi2 {
+      stroke: black;
+      fill: gray;
+      opacity: 0;
+    }
+
+    // when user adds ?show-voronoi to URL, then show it
+    .show-voronoi & .voronoi2 {
+      opacity: 0.1;
+    }
+  }
+
+  .picker {
+    font-size: 12px;
+    max-width: 300px;
+    text-align: left;
+    .details, .loading {
+      .sans();
+      font-size: 11px;
+      text-align: center;
+    }
+    .loading {
+      .text-muted;
+    }
+    .loading.err {
+      .text-danger;
+    }
+    .key {
+      margin-top: 0.3em;
+      min-height: 45px;
+    }
+  }
+
+  .mbta,
+  .actual {
+    stroke: none;
+    // opacity: 0.5;
+  }
+
+  .pick-two {
+    font-size: 12px;
+    max-width: 600px;
+    text-align: left;
+  }
+
+  .viz, .breakout {
+    display: inline-block;
+  }
+
+  .mbta {
+    fill: red;
+    opacity: 0.4;
+  }
+
+  .actual {
+    fill: blue;
+  }
+
+  .area {
+    fill: gray;
+    stroke: black;
+    stroke-width: 2px;
+  }
+
+  .axis {
+    line, path {
+      stroke: darken(white, 10%);
+    }
+  }
+  line.midpoint {
+    stroke: black;
+    shape-rendering: crispEdges;
+  }
+  .axis.bold-ticks {
+    text {
+      display: none;
+    }
+  }
+
+  .top {
+    stroke: none;
+    fill: steelBlue;
+  }
+  .bottom {
+    stroke: none;
+    fill: orange;
+  }
+
+  .under {
+    opacity: 0.1;
+  }
+
+  .range {
+    opacity: 0.5;
+  }
+
+  .p50 {
+    stroke: black;
+    stroke-width: 2px;
+    fill: none;
+  }
+
+  .circle {
+    fill: #444;
+    opacity: 0.8;
+    stroke: none;
+  }
+
+  .key-marker {
+    fill: none;
+    stroke: black;
+    stroke-width: 2px;
+    shape-rendering: crispEdges;
+  }
+
+  .tick text {
+    text-anchor: end !important;
+  }
+
+
+  .highlighter {
+    shape-rendering: crispEdges;
+    stroke: black;
+  }
+
+  text.withbg {
+    filter:url(#highlight-filter)
+  }
+
+  .day {
+    .daylabel {
+      font-size: 10px;
+      // font-weight: bold;
+      shape-rendering: crispEdges;
+    }
+    .dayofmonthlabel {
+      font-size: 10px;
+      shape-rendering: crispEdges;
+    }
+    .axis path {
+      display: none;
+    }
+  }
+
+  .left, .right {
+    clear: none;
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  &.highlighting {
+    .dimmable {
+      opacity: 0.1 !important;
+    }
+    .highlight-active {
+      opacity: 1 !important;
+    }
+  }
+
+  .loading-data {
+    opacity: 0.3;
+  }
+  .pick-two {
+    .transition(opacity 50ms ease)
+  }
+}

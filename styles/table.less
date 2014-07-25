@@ -1,0 +1,28 @@
+/**
+ * table.less
+ *
+ * Copyright 2014 Michael Barry & Brian Card.  MIT open-source lincense.
+ *
+ * Styles for tables in the doc
+ */
+
+@table-condensed-cell-padding:  2px;
+
+.table {
+  .sans();
+  th {
+    font-weight: normal;
+  }
+  td, tbody, tr, thead, th {
+    border: 0 !important;
+  }
+  .bottom-border {
+    border-bottom: 2px solid @table-border-color !important;
+  }
+}
+
+.table-caption {
+  margin: 0.5em 0;
+  font-size: 0.8em;
+  text-align: center;
+}

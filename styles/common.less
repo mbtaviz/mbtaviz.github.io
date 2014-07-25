@@ -1,0 +1,240 @@
+/**
+ * common.less
+ *
+ * Copyright 2014 Michael Barry & Brian Card.  MIT open-source lincense.
+ *
+ * Overall theme for the visualization
+ */
+
+// Re-usable font mixins
+.sans() {  font-family: @font-family-sans-serif; }
+.serif() { font-family: @font-family-serif; }
+.cursor(@value) {
+  cursor: ~"-moz-@{value}";
+  cursor: ~"-webkit-@{value}";
+  cursor: @value;
+}
+.draggable {
+  .cursor(grab);
+}
+.dragging {
+  .cursor(grabbing);
+}
+.dragging .draggable {
+  .cursor(grabbing);
+}
+
+
+// cross-browser normalization
+html {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  background-color: white;
+}
+
+body {
+  margin: 0 0;
+  width: 100%;
+  font-weight: normal;
+}
+
+img {
+  max-width: 100%;
+}
+
+a:hover,
+a:focus {
+  outline: 0;
+}
+
+text {
+  fill: @text-color;
+}
+
+svg {
+  .sans();
+  font-size: 11px;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 5em;
+  min-width: @screen-sm;
+}
+
+
+// interactive text
+.hover-link {
+  text-decoration: none;
+  border-bottom: 1px dashed @link-color;
+}
+
+.hover-link:hover,
+.hover-link:focus {
+  text-decoration: none;
+  border-bottom: 1px dashed @link-hover-color;
+}
+
+a.click-link {
+  text-decoration: none;
+  border-bottom: 1px dashed @link-color;
+}
+polyline.click-link {
+  stroke: @link-color;
+  stroke-width: 1px;
+  stroke-dasharray: 3,3;
+}
+tspan.click-link {
+  fill: @link-color;
+}
+
+
+a.click-link:hover,
+a.click-link:focus {
+  text-decoration: none;
+  border-bottom: 1px solid @link-hover-color;
+}
+
+ployline.click-link:hover,
+polyline.click-link:focus {
+  stroke: @link-hover-color;
+  stroke-dasharray: 3,0;
+  cursor: pointer; 
+}
+
+tspan.click-link:hover,
+tspan.click-link:focus {
+  cursor: pointer;
+  fill: @link-hover-color;
+}
+
+.ios a.click-link {
+  border-bottom: none;
+}
+
+
+// The MBTA colors
+.blue {
+  fill: @blue-line;
+  stroke: @blue-line;
+  background-color: @blue-line !important;
+}
+.red {
+  fill: @red-line;
+  stroke: @red-line;
+  background-color: @red-line !important;
+}
+.orange {
+  fill: @orange-line;
+  stroke: @orange-line;
+  background-color: @orange-line !important;
+}
+path.blue {
+  stroke: @blue-line;
+  fill: none;
+}
+path.red {
+  stroke: @red-line;
+  fill: none;
+}
+path.orange {
+  stroke: @orange-line;
+  fill: none;
+}
+
+
+// Axes
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  stroke-width: 1px;
+  shape-rendering: crispEdges;
+}
+
+
+// Color keys
+.key {
+  .axis path {
+    display: none !important;
+  }
+  rect {
+    shape-rendering: crispEdges;
+  }
+}
+
+
+// D3 brush indicator (like used on lined-up marey diagram)
+.brush .extent {
+  stroke: #fff;
+  fill-opacity: .125;
+  shape-rendering: crispEdges;
+}
+.brush .resize {
+  cursor: move !important;
+}
+.only-ios {
+  display: none;
+}
+
+.ios .only-ios {
+  display: inline-block;
+}
+
+.ios .hide-on-ios {
+  display: none;
+}
+
+.space-above {
+  margin-top: 4em;
+}
+
+.spacing {
+  margin: 3em 0;
+}
+
+.light-markup {
+  fill: #999;
+  color: #999;
+}
+
+.annotation {
+  .serif();
+  font-size: 12px;
+}
+
+.bottom-border {
+  border-bottom: 1px solid @table-border-color;
+}
+
+p {
+  .text-justify;
+}
+
+@media (min-width: @screen-lg-min) {
+  p {
+    font-size: 16px;
+  }
+}
+
+h3 {
+  position: relative;
+}
+
+a.anchor {
+  display: block;
+  margin-left: -23px;
+  padding-right: 5px;
+  cursor: pointer;
+  position: absolute;
+  top: 0.1em;
+  left: 0;
+  bottom: 0;
+  font-size: 0.8em;
+  .opacity(0);
+  .transition(opacity 0.1s ease);
+}
+
+h3:hover a.anchor {
+  .opacity(100);
+}

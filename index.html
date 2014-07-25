@@ -39,7 +39,7 @@
   </script>
 
 
-  <link href='styles/main.ff727f17.css' rel='stylesheet' type='text/css'>
+  <link href='styles/main.css' rel='stylesheet' type='text/css'>
 </head>
 <body>
 <!--[if lt IE 9]>
@@ -71,7 +71,7 @@
     </div>
 
     <!-- AddThis Button BEGIN -->
-    <div class="container section-share">
+    <div class="container section-share text-right">
       <div class="addthis_toolbox addthis_default_style ">
       <a class="addthis_button_facebook_share" fb:share:layout="button_count"></a>
       <a class="addthis_button_tweet"></a>
@@ -83,6 +83,7 @@
       var addthis_share = {"url":"http://mbtaviz.github.io/","title":"Visualizing MBTA Data","description":"An interactive exploration of Boston's subway system"};
       </script>
       <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5253f5637952ccec"></script>
+      <iframe src="http://ghbtns.com/github-btn.html?user=mbtaviz&repo=mbtaviz.github.io&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="90px" height="20px"></iframe>
     </div>
     <!-- AddThis Button END -->
   </div>
@@ -282,7 +283,7 @@
     </div>
   </div>
 
-  <!-- Congestions and delay -->
+  <!-- Congestions and Delay -->
   <div class="full-width section-people-trains">
     <div class="container">
       <h3>
@@ -336,7 +337,7 @@
     </div>
   </div>
 
-  <!-- Pick two stops -->
+  <!-- Pick Two Stops -->
   <div class="full-width section-pick-two">
     <div class="container">
       <h3>
@@ -455,20 +456,52 @@
         and
         <a href="http://en.wikipedia.org/wiki/%C3%89tienne-Jules_Marey" target="_blank">Étienne-Jules Marey</a>.
       </p>
+    </div>
+  </div>
+
+  <!-- Source Code -->
+  <div class="full-width section-source-code">
+    <div class="container">
+      <h3>
+        <a href="#source-code" class="anchor">
+          <span class="glyphicon glyphicon-link"></span>
+        </a>
+        Source Code
+      </h3>
       <p>
-        For any questions on our project, dataset, or source code, please reach out to
+        The source code and raw data are available
+        <a href="https://github.com/mbtaviz/mbtaviz.github.io/" target="_blank">on github</a>
+        and described in this
+        <a href="http://mbtaviz.wordpress.com/2014/07/25/website-source-announcement" target="_blank">blog post</a>.
+      </p>
+      <p>
+        For any questions, please reach out to
         <a href="https://twitter.com/msb5014" target="_blank">Michael Barry on Twitter</a>.
       </p>
     </div>
   </div>
 
-  <!-- The Code -->
-  <script src="scripts/es6-shim.c2bd72fb.js"></script>
-  <script src="scripts/underscore.32e682c4.js"></script>
-  <script src="bower_components/moment/min/moment.min.cdab859b.js"></script>
-  <script src="bower_components/d3/d3.min.1d7dc488.js"></script>
-  <script src="bower_components/jquery/dist/jquery.min.c0d4098b.js"></script>
-  <script src="scripts/main.e173e7c4.js"></script>
+  <!-- 3rd Party Dependencies -->
+  <script src="bower_components/es6-shim/es6-shim.min.js"></script>
+  <script src="bower_components/underscore/underscore.min.js"></script>
+  <script src="bower_components/moment/min/moment.min.js"></script>
+  <script src="bower_components/d3/d3.min.js"></script>
+  <script src="bower_components/jquery/dist/jquery.min.js"></script>
+
+  <!-- D3 Plugins -->
+  <script src="scripts/horizon.js"></script>
+  <script src="bower_components/d3-tip/index.js"></script>
+
+  <!-- Custom Code -->
+  <script src="scripts/common.js"></script>
+  <script src="scripts/files.js"></script>
+  <script src="scripts/dataloader.js"></script>
+  <script src="scripts/fixed.js"></script>
+  <script src="scripts/header.js"></script>
+  <script src="scripts/the-trains.js"></script>
+  <script src="scripts/the-people.js"></script>
+  <script src="scripts/congestion-and-delay.js"></script>
+  <script src="scripts/your-commute.js"></script>
   
     <script src="//oss.maxcdn.com/signet/0.4.4/signet.min.js"></script>
   

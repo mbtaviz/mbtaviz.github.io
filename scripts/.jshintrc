@@ -1,0 +1,12 @@
+{
+  "undef": true,
+  "unused": true,
+  "browser": true,
+  "predef": [
+    "d3",
+    "_",
+    "$",
+    "VIZ",
+    "moment"
+  ]
+}

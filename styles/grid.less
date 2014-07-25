@@ -1,0 +1,74 @@
+/**
+ * grid.less
+ *
+ * Copyright 2014 Michael Barry & Brian Card.  MIT open-source lincense.
+ *
+ * Custom grid system based off of Bootstrap's responsive grid
+ * (https://github.com/twbs/bootstrap/blob/master/less/grid.less)
+ *
+ * We specify 3 responsive width breakpoints.  Large screens max-out at
+ * a 1200px-wide visualization and small screens bottom-out at a 768px wide
+ * visualization so we don't need to worry about rendering the charts less
+ * than 768px wide. Since we set a viewport width of 768px, phones and tablets
+ * get scale the 768px-wide visualization to fit the screen width.
+ */
+
+
+// Container widths
+
+.container {
+  // <992px use 768 viewport
+  .container-fixed();
+  width: @container-sm;
+
+  // 992-1200 use 992 viewport
+  @media (min-width: @screen-md-min) {
+    width: @container-md;
+  }
+
+  // >1200 use 1200 viewport
+  @media (min-width: @screen-lg-min) {
+    width: @container-lg;
+  }
+}
+
+
+// Row
+//
+// Rows contain and clear the floats of your columns.
+
+.row {
+  .make-row();
+}
+
+
+// Columns
+//
+// Common styles for small and large grid columns
+
+.make-grid-columns();
+
+
+// Small grid
+//
+// Columns, offsets, pushes, and pulls for the small device range, <992px setup for 768px
+
+.make-grid(sm);
+
+
+// Medium grid
+//
+// Columns, offsets, pushes, and pulls, 992-1200px
+
+@media (min-width: @screen-md-min) {
+  .make-grid(md);
+}
+
+
+// Large grid
+//
+// Columns, offsets, pushes, and pulls, 1200+px
+
+@media (min-width: @screen-lg-min) {
+  .make-grid(lg);
+}

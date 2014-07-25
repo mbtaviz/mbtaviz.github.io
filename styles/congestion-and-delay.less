@@ -1,0 +1,94 @@
+/**
+ * congestion-and-delay.less
+ *
+ * Copyright 2014 Michael Barry & Brian Card.  MIT open-source lincense.
+ *
+ * Styles for the congestion and delay visualizations
+ */
+
+.interaction-all {
+  text-align: center;
+
+  path {
+    stroke-width: 0.2;
+    stroke: black;
+  }
+
+  // bar that shows time and day you are hovering over
+  .indicator {
+    line {
+      stroke: black;
+      stroke-width: 1px;
+      shape-rendering: crispEdges;
+    }
+    text {
+      font-size: 10px;
+    }
+  }
+
+  // hover-over highlighting
+  .viz.highlighting .dimmable {
+    opacity: 0.1;
+  }
+  .viz.highlighting .active {
+    opacity: 1;
+  }
+
+  .left, .right {
+    clear: none;
+    display: inline-block;
+    vertical-align: top;
+  }
+  .left {
+    max-width: 400px;
+  }
+  p {
+    .text-justify;
+  }
+  svg {
+    display: inline-block;
+  }
+
+  // The turnstile-entry horizon chart
+  .horizon path {
+    stroke: none;
+  }
+
+  .axis path {
+    display: none;
+  }
+
+  // The colored band
+  rect.delay-rect {
+    shape-rendering: crispEdges;
+    stroke: none;
+  }
+
+  // table row names
+  .daylabel {
+    font-size: 14px;
+    font-weight: bold;
+    shape-rendering: crispEdges;
+  }
+  .dayofmonthlabel {
+    font-size: 12px;
+    shape-rendering: crispEdges;
+  }
+
+  // in-paragraph color descriptions
+  .legend-fast {
+    background-color: rgb(0, 104, 55);
+  }
+  .legend-slow {
+    background-color: rgb(165, 0, 38);
+  }
+  .legend-fast, .legend-slow {
+    color: white;
+    padding: 0px 3px;
+    border-radius: 3px;    
+  }
+
+  .connect path:hover {
+    stroke-width: 1px !important;
+  }
+}

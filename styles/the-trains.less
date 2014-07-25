@@ -1,0 +1,145 @@
+/**
+ * the-trains.less
+ *
+ * Copyright 2014 Michael Barry & Brian Card.  MIT open-source lincense.
+ *
+ * Styles for the marey diagram (both spread-out and lined-up)
+ */
+
+// Main marey style
+.section-trains {
+  .fixed-left {
+    .connect {
+      stroke-width: 0.5;
+      stroke: black;
+    }
+    circle.station.middle {
+      fill: gray;
+      opacity: 0.3;
+    }
+    circle.station.end {
+      opacity: 0.8;
+    }
+  }
+
+  // The marey diagram itself
+  .marey {
+    // mouseover bar
+    .bar {
+      stroke: black;
+      stroke-width: 1px;
+      shape-rendering: crispEdges;
+      font-weight: bold;
+    }
+    .station-label {
+      opacity: 0.7;
+      font-size: 10px;
+    }
+    text.station-label.active {
+      opacity: 1;
+    }
+    line.station {
+      stroke-width: 1px;
+      stroke: black;
+      stroke-opacity: 0.1;
+      shape-rendering: crispEdges;
+    }
+
+    .mareystop {
+      shape-rendering: crispEdges;
+    }
+
+    /* Make ends of line bolder */
+    line.station.place-asmnl-red,
+    /*line.station.place-alfcl-red,*/
+    line.station.place-brntn-red,
+    line.station.place-wondl-blue,
+    line.station.place-bomnl-blue,
+    line.station.place-forhl-orange,
+    line.station.place-ogmnl-orange {
+      stroke-width: 1px;
+      stroke: black;
+      stroke-opacity: 0.35;
+    }
+    .text-background {
+      fill: white;
+      fill-opacity: 0.7;
+    }
+    path.hover,
+    path.active {
+      stroke-width: 2px;
+    }
+    .annotation-connection {
+      stroke: black;
+      stroke-width: 1px;
+      fill: none;
+    }
+  }
+
+  // hover-over highlighting
+  circle.hoverable {
+    stroke-opacity: 0;
+  }
+  circle.hover {
+    stroke-width: 25px;
+    stroke-opacity: 0.5;
+  }
+
+  .highlight-active {
+    circle {
+      stroke-opacity: 0;
+    }
+    circle.active {
+      stroke-width: 25px;
+      stroke-opacity: 0.5;
+    }
+    path.dimmable {
+      opacity: 0.2;
+    }
+    .tiny path {
+      opacity: 0.1;
+    }
+    circle.dimmable {
+      opacity: 0.5;
+    }
+    .highlightable.active {
+      opacity: 1;
+    }
+  }
+
+  // The lined-up marey diagram
+  .lined-up-marey {
+    .y.axis .tick line {
+      stroke: #eee;
+    }
+    .mareyline {
+      opacity: 0.1;
+    }
+    .mareyline.highlight {
+      opacity: 1 !important;
+      stroke-width: 3px;
+    }
+    .mareyline.dimmed {
+      opacity: 0.02 !important;
+      stroke: black;
+    }
+    .mareyarea {
+      fill: black;
+      opacity: 0.05;
+    }
+    .mareystop {
+      fill: black;
+    }
+    .mareynames text {
+      font-size: 10px;
+    }
+  }
+
+  .line-dimmed {
+    opacity: 0.1 !important;
+  }
+
+  .section-trains {
+    margin-bottom: 4em;
+  }
+}

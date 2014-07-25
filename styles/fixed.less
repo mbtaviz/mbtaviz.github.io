@@ -1,0 +1,61 @@
+/**
+ * fixed.less
+ *
+ * Copyright 2014 Michael Barry & Brian Card.  MIT open-source lincense.
+ *
+ * Style enforcing the fixed position elements to the left side of visualizations
+ * spanning more than one page like the Marey diagram
+ */
+
+// Utility to put fixed element above non-fixed element
+.layout-vertical() {
+  text-align: center;
+
+  .fixed-left {
+    display: inline-block;
+    position: relative;
+    margin: 0 auto;
+    max-width: 80%;
+    .clearfix;
+  }
+  .fixed-right {
+    padding-left: 0;
+    margin: 0 auto;
+    min-width: @screen-sm * 0.9;
+    max-width: 90%;
+  }
+}
+
+.fixed-container {
+  // The map on the left
+  .fixed-left {
+    .translate3d(0;0;0);
+    left: 0;
+    top: 0;
+    position: fixed;
+    z-index: 1;
+    width: auto;
+    max-width: 370px;
+    vertical-align: top;
+    text-align: center;
+    overflow-y: auto;
+    max-height: 100%;
+    p {
+      .text-justify;
+      font-size: 12px;
+    }
+  }
+
+  // Disable side-scrolling when screen gets too narrow and on ios devices
+  @media (max-width: @screen-sm-max) {
+    .layout-vertical();
+  }
+  .ios & {
+    .layout-vertical();
+  }
+
+  // hide fixed-left until loaded
+  .loading &, .loading {
+    .fixed-left { display: none; }
+  }
+}

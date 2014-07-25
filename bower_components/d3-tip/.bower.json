@@ -23,6 +23,5 @@
   },
   "_source": "git://github.com/Caged/d3-tip.git",
   "_target": "~0.6.4",
-  "_originalSource": "d3-tip",
-  "_direct": true
+  "_originalSource": "d3-tip"
 }
