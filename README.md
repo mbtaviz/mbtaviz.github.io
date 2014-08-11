@@ -93,6 +93,7 @@ Standard time zone.
 **Brian Card**
 
 - <https://github.com/bcard>
+- <https://twitter.com/bmcard>
 
 ## License
 

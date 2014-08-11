@@ -470,7 +470,9 @@ VIZ.requiresData([
     });
 
     var stationLabels = fullMareyHeader.selectAll('.station-label')
-        .data(nodesPerLine)
+        .data(nodesPerLine);
+
+    stationLabels
         .enter()
       .append('text')
         .attr('class', 'station-label')
