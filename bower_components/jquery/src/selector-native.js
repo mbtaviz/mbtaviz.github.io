@@ -29,8 +29,7 @@ define([
 
 var docElem = window.document.documentElement,
 	selector_hasDuplicate,
-	matches = docElem.matches ||
-		docElem.webkitMatchesSelector ||
+	matches = docElem.webkitMatchesSelector ||
 		docElem.mozMatchesSelector ||
 		docElem.oMatchesSelector ||
 		docElem.msMatchesSelector,
