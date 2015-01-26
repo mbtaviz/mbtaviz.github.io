@@ -22,7 +22,9 @@ the handouts from each:
   goes into even more depth on design and implementation details.
 - [NEASIST Data Visualization Workshop - January 15, 2015](http://mbtaviz.github.io/neasist-handout.pdf)
   serves as a reference sheet to all of the free and open source tools used in the making of this project.
-  [Slides](http://mbtaviz.github.io/neasist-slides.pdf) from this talk are also available.
+  [Slides](http://mbtaviz.github.io/neasist-slides.pdf) from this talk are also available. See our
+  [blog post](https://mbtaviz.wordpress.com/2015/01/26/new-video-how-we-built-mbtaviz/) for more details and a video
+  of the talk put together by the WGBH Forum Network.
 
 ## Quick Start
 
