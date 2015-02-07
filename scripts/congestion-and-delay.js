@@ -58,8 +58,11 @@ VIZ.requiresData([
   });
   var xRange = d3.extent(network.nodes, function (d) { return d.x; });
   var yRange = d3.extent(network.nodes, function (d) { return d.y; });
-  var byDay = _.toArray(_.groupBy(delay, 'day'));
-
+  var byDay = _.chain(delay)
+    .groupBy('day')
+    .toArray()
+    .sortBy(function (d) { return d[0].day; })
+    .value();
 
 
 
