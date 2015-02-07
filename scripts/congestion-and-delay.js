@@ -181,7 +181,7 @@ VIZ.requiresData([
       .data(byDay)
       .enter()
     .append("svg:linearGradient")
-      .attr("id", function (d, i) { return "gradient" + i; })
+      .attr("id", function (d) { return "gradient" + d[0].day; })
       .attr("x1", "0%")
       .attr("y1", "0%")
       .attr("x2", "100%")
