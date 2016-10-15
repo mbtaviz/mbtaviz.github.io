@@ -74,11 +74,11 @@ For more information see <http://lesscss.org>.
 
 ## Raw Data
 
-The raw data is available from two sources.  A zipped csv file with per-minute 
+The raw data is available from two sources.  A compressed csv file with per-minute
 turnstile entry and exit counts from each station is made available with 
 permission from the MBTA:
 
-<https://www.dropbox.com/s/vv2l1iehhx3wkfx/StationTurnstileCountsByMinute_2014_02-01--03-02.csv.zip>
+<https://github.com/mbtaviz/mbtaviz.github.io/releases/download/data/turnstile_data.csv.gz>
 
 NOTE: some stations don't accurately measure turnstile exits, so entry counts 
 will tend to be more accurate.
@@ -86,7 +86,7 @@ will tend to be more accurate.
 Also the realtime subway and alert JSON files collected for the month of 
 February are available here:
 
-<https://www.dropbox.com/s/8qqo1x6h93v7cv4/raw_subway_data.zip>
+<https://github.com/mbtaviz/mbtaviz.github.io/releases/download/data/raw_subway_data.tar.gz>
 
 They are stored in hourly gzipped files in the following format: 
 `subway-line/yyyy/mm/dd/hh/data.json.gz`
